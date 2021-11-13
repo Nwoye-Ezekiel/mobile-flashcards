@@ -3,39 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import CardFlip from "react-native-card-flip";
 import { clearNotification, setNotification } from "../utils/api";
-
-const Result = ({
-  score,
-  restartQuiz,
-  quit,
-  percentage,
-  numberOfQuestions,
-}) => {
-  return (
-    <View>
-      <Text>Result Statistics</Text>
-      <Text>You were {percentage}% accurate</Text>
-
-      <Text>
-        You got {score}/{numberOfQuestions} questions correctly
-      </Text>
-
-      {score < numberOfQuestions / 2 ? (
-        <Text>You Performed Poorly!</Text>
-      ) : score === numberOfQuestions ? (
-        <Text>Excellent! You got it all correctly.</Text>
-      ) : (
-        <Text>You perfromed well!</Text>
-      )}
-      <TouchableOpacity style={styles.button} onPress={restartQuiz}>
-        <Text style={styles.buttonText}>Restart Quiz</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={quit}>
-        <Text style={styles.buttonText}>Quit</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
+import Result from "./Result";
 
 const Quiz = ({ navigation, decks, title }) => {
   const [next, setNext] = useState(0);
@@ -46,47 +14,34 @@ const Quiz = ({ navigation, decks, title }) => {
   const [numberOfQuestions] = useState(decks[title].questions.length);
   const isMounted = useRef(true);
 
+  let flipcard;
+
   useEffect(() => {
-    return () => {
-      isMounted.current = false;
-    };
+    return () => (isMounted.current = false);
   }, []);
 
   useEffect(() => {
-    if (isMounted.current) {
+    if (isMounted.current)
       setPercentage(((score / numberOfQuestions) * 100).toFixed(2));
-    }
   }, [score]);
 
   useEffect(() => {
     if (isMounted.current) {
-      if (showResult) {
-        clearNotification().then(() => setNotification());
-
-        // async () => {
-        //   await clearNotification();
-        //   await setNotification();
-        // };
-      }
+      if (showResult) clearNotification().then(() => setNotification());
     }
   }, [showResult]);
-
-  let flipcard;
 
   const handleOption = (option) => {
     if (flip) {
       flipcard.flip();
       setFlip(false);
     }
+
     if (next + 1 === numberOfQuestions) {
-      if (option === decks[title].questions[next].answer) {
-        setScore(score + 1);
-      }
+      if (option === decks[title].questions[next].answer) setScore(score + 1);
       setShowResult(true);
     } else {
-      if (option === decks[title].questions[next].answer) {
-        setScore(score + 1);
-      }
+      if (option === decks[title].questions[next].answer) setScore(score + 1);
       setNext(next + 1);
     }
   };

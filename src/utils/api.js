@@ -93,7 +93,7 @@ export const clearNotification = async () => {
 export const createNotification = () => {
   return {
     title: "Mobile Flashcards",
-    body: "Hey, Don't forget to attempt at least one quiz today.",
+    body: "Hey👋, Don't forget to attempt at least one quiz today.",
     ios: {
       sound: true,
     },
@@ -111,22 +111,17 @@ export const setNotification = async () => {
     let access = await JSON.parse(await AsyncStorage.getItem(NOTIFICATION_KEY));
     if (access === null) {
       let { status } = await Location.requestForegroundPermissionsAsync();
-      alert(status);
       if (status === "granted") {
         Notifications.cancelAllScheduledNotificationsAsync();
 
-        let tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        tomorrow.setHours(20);
-        tomorrow.setMinutes(0);
-
         Notifications.scheduleNotificationAsync({
           content: createNotification(),
-          trigger: { seconds: 1 },
-          time: tomorrow,
-          repeat: "day",
+          trigger: {
+            seconds: 1,
+            // repeats: true,
+          },
         });
-
+        
         await AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
       }
     }
@@ -138,6 +133,8 @@ export const setNotification = async () => {
 export const triggerLocalNotificationHandler = () => {
   Notifications.scheduleNotificationAsync({
     content: createNotification(),
-    trigger: { seconds: 1 },
+    trigger: {
+      seconds: 1,
+    },
   });
 };
