@@ -34,23 +34,30 @@ const Deck = ({ navigation, decks, title, dispatch }) => {
   };
 
   return (
-    <View>
-      <Text>{title}</Text>
-      <Text>{numberOfCards} Cards</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.size}>
+        {numberOfCards} {numberOfCards > 1 ? "Cards" : "Card"}
+      </Text>
       <TouchableOpacity
-        style={styles.button}
+        style={[styles.button, styles.addButton]}
         onPress={() => navigation.navigate("AddCard")}
       >
-        <Text style={styles.buttonText}>Add Card</Text>
+        <Text style={[styles.buttonText, { color: "#ff5e00" }]}>Add Card</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.button}
+        style={[styles.button, styles.quizButton]}
         onPress={() => navigation.navigate("Quiz")}
       >
-        <Text style={styles.buttonText}>Start Quiz</Text>
+        <Text style={styles.buttonText}>Start a Quiz</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={handleDeleteDeck}>
-        <Text style={styles.buttonText}>Delete Deck</Text>
+      <TouchableOpacity
+        style={[styles.button, styles.deleteButton]}
+        onPress={handleDeleteDeck}
+      >
+        <Text style={[styles.buttonText, { color: "#ff5e00" }]}>
+          Delete Deck
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -66,6 +73,26 @@ const mapStateToProps = ({ decks, currentDeckTitle }) => {
 export default connect(mapStateToProps)(Deck);
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+    backgroundColor: "wheat",
+  },
+  title: {
+    fontSize: 23,
+    width: "80%",
+    textAlign: "center",
+    fontWeight: "bold",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: -100,
+  },
+  size: {
+    marginBottom: 30,
+    opacity: 0.5,
+  },
   button: {
     width: "100%",
     alignItems: "center",
@@ -76,10 +103,14 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
   },
-  resetButton: {
-    backgroundColor: "tomato",
-    height: 60,
-    color: "black",
+  addButton: {
+    backgroundColor: "#fff",
+  },
+  quizButton: {
+    backgroundColor: "#ff5e00",
+  },
+  deleteButton: {
+    backgroundColor: "black",
   },
   buttonText: {
     color: "white",

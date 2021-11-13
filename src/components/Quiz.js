@@ -75,36 +75,50 @@ const Quiz = ({ navigation, decks, title }) => {
       )}
       {!showResult &&
         (numberOfQuestions === 0 ? (
-          <Text>No Questions Available!</Text>
+          <View style={styles.container}>
+            <Text style={styles.noQuestions}>No Questions Available!</Text>
+          </View>
         ) : (
-          <View>
-            <Text>
+          <View style={styles.container}>
+            <Text style={styles.currentNumber}>
               {next + 1}/{numberOfQuestions}
             </Text>
-            <View>
+            <View style={styles.cardWrapper}>
               <CardFlip
+                style={styles.cardContainer}
                 ref={(card) => (flipcard = card)}
-                style={styles.card}
                 perspective={500}
               >
                 <TouchableOpacity style={styles.face}>
-                  <Text>{decks[title].questions[next].question}</Text>
+                  <Text style={styles.questionTitle}>Question:</Text>
+                  <Text style={styles.questionContent}>
+                    {decks[title].questions[next].question}
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.back}>
-                  <Text>{decks[title].questions[next].answer}</Text>
+                  <Text style={styles.answerTitle}>Answer:</Text>
+                  <Text style={styles.answerContent}>
+                    {decks[title].questions[next].answer}
+                  </Text>
                 </TouchableOpacity>
               </CardFlip>
             </View>
-            <Text onPress={handleFlip}>Answer</Text>
+            <View style={styles.showAnswerContainer}>
+              <Text style={styles.showAnswerText} onPress={handleFlip}>
+              Show Answer
+              </Text>
+            </View>
             <TouchableOpacity
               style={styles.button}
               onPress={() => handleOption("True")}
             >
-              <Text style={styles.buttonText}>Correct</Text>
+              <Text style={[styles.buttonText, { color: "#ff5e00" }]}>
+                Correct
+              </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={styles.button}
+              style={[styles.button, { backgroundColor: "#ff5e00" }]}
               onPress={() => handleOption("False")}
             >
               <Text style={styles.buttonText}>Incorrect</Text>
@@ -125,39 +139,98 @@ const mapStateToProps = ({ decks, currentDeckTitle }) => {
 export default connect(mapStateToProps)(Quiz);
 
 const styles = StyleSheet.create({
-  card: {
-    position: "relative",
-    marginRight: 20,
-    marginLeft: 20,
-    height: 100,
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
     padding: 20,
-    borderWidth: 2,
+    minHeight: "100%",
+    backgroundColor: "wheat",
+  },
+  noQuestions: {
+    fontSize: 23,
+    fontWeight: "bold",
+    marginTop: -50,
+  },
+  currentNumber: {
+    fontSize: 16,
+    marginBottom: 10,
+    fontWeight: "bold",
+    marginTop: -100,
+  },
+  cardWrapper: {
+    width: "100%",
+  },
+  cardContainer: {
+    width: "100%",
+    minHeight: 200,
+    marginBottom: 20,
   },
   face: {
+    flex: 1,
     height: "100%",
-    backgroundColor: "#DADADA",
+    backgroundColor: "black",
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 2,
+    padding: 20,
+    borderRadius: 10,
+  },
+  faceText: {
+    color: "white",
+    fontSize: 16,
   },
   back: {
+    borderRadius: 10,
     height: "100%",
-    backgroundColor: "#FFF0F0",
+    backgroundColor: "#ff5e00",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+  },
+  questionTitle: {
+    color: "#ff5e00",
+    fontSize: 20,
+    marginBottom: 5,
+    fontWeight: "bold",
+    marginTop: -20,
+  },
+  questionContent: {
+    color: "white",
+    fontSize: 16,
+  },
+  answerTitle: {
+    color: "black",
+    fontSize: 20,
+    marginBottom: 5,
+    fontWeight: "bold",
+    marginTop: -20,
+  },
+  answerContent: {
+    color: "black",
+    fontSize: 16,
   },
   cardText: {
     color: "black",
+  },
+  showAnswerContainer: {
+    marginBottom: 20,
+    padding: 10,
+    backgroundColor: "black",
+    borderRadius: 5,
+    color: "white",
+  },
+  showAnswerText: {
+    color: "white",
   },
   button: {
     width: "100%",
     alignItems: "center",
     padding: 20,
-    backgroundColor: "#007ACC",
+    backgroundColor: "white",
     borderRadius: 5,
     height: 60,
-    marginTop: 5,
-    marginBottom: 5,
-  },
-  resetButton: {
-    backgroundColor: "tomato",
-    height: 60,
-    color: "black",
+    marginBottom: 10,
   },
   buttonText: {
     color: "white",

@@ -12,7 +12,7 @@ export default function BottomTabNavigator() {
     <Tab.Navigator
       initialRouteName="Decks"
       screenOptions={{
-        tabBarActiveTintColor: "#007ACC",
+        tabBarActiveTintColor: "#ff5e00",
         tabBarLabelStyle: styles.tabBarLabel,
       }}
     >
@@ -21,12 +21,18 @@ export default function BottomTabNavigator() {
         component={Decks}
         options={{
           tabBarLabel: "Decks",
+          headerStyle: {
+            backgroundColor: "#F5DEB3",
+            shadowOpacity: 0.5,
+            shadowRadius: 5,
+            shadowColor: "#000",
+          },
           tabBarIcon: ({ focused }) => {
             return (
               <AntDesign
                 name="folder1"
                 size={22}
-                color={focused ? "#007ACC" : "grey"}
+                color={focused ? "#ff5e00" : "grey"}
               />
             );
           },
@@ -42,7 +48,7 @@ export default function BottomTabNavigator() {
               <AntDesign
                 name="addfolder"
                 size={22}
-                color={focused ? "#007ACC" : "grey"}
+                color={focused ? "#ff5e00" : "grey"}
               />
             );
           },

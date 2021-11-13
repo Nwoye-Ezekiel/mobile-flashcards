@@ -68,7 +68,7 @@ export const addCardToStorage = async (dispatch, card, deck) => {
   }
 };
 
-// Show notifications when the app is in the foreground
+// enable notification display when the app is in the foreground
 Notifications.setNotificationHandler({
   handleNotification: async () => {
     try {
@@ -86,14 +86,14 @@ export const clearNotification = async () => {
     await AsyncStorage.removeItem(NOTIFICATION_KEY);
     await Notifications.cancelAllScheduledNotificationsAsync();
   } catch (error) {
-    alert("Failed to clear notification");
+    return null;
   }
 };
 
 export const createNotification = () => {
   return {
     title: "Mobile Flashcards",
-    body: "Hey👋, Don't forget to attempt at least one quiz today.",
+    body: "Hey 👋 Don't forget to attempt at least one quiz today.",
     ios: {
       sound: true,
     },
@@ -118,23 +118,14 @@ export const setNotification = async () => {
           content: createNotification(),
           trigger: {
             seconds: 1,
-            // repeats: true,
+            repeats: true,
           },
         });
-        
+
         await AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
       }
     }
   } catch (error) {
     return null;
   }
-};
-
-export const triggerLocalNotificationHandler = () => {
-  Notifications.scheduleNotificationAsync({
-    content: createNotification(),
-    trigger: {
-      seconds: 1,
-    },
-  });
 };

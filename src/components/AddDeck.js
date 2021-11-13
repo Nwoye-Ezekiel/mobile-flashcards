@@ -29,7 +29,7 @@ const AddDeck = ({ navigation, dispatch, decks }) => {
     dispatch(setCurrentDeckTitle(deck));
     setDeck("");
     if (doesDeckExist(deck) !== true) {
-      navigation.navigate("Deck", {numberOfCards: 0});
+      navigation.navigate("Deck", { numberOfCards: 0 });
     }
   };
 
@@ -47,13 +47,17 @@ const AddDeck = ({ navigation, dispatch, decks }) => {
             }}
             value={deck}
             placeholder="Enter the deck title"
+            placeholderTextColor="#ffffff80"
+            maxLength={25}
           />
           <TouchableOpacity
             disabled={!deck}
             style={[styles.button, styles.resetButton]}
             onPress={() => setDeck("")}
           >
-            <Text style={styles.buttonText}>Reset Input</Text>
+            <Text style={[styles.buttonText, { color: "#193236" }]}>
+              Reset Input
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
             disabled={!deck}
@@ -80,12 +84,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
+    backgroundColor: "#ff5e00",
+    // backgroundColor: "#ff5e00",
   },
   textHeader: {
-    fontSize: 20,
-    width: "100%",
+    fontSize: 23,
+    width: "70%",
     textAlign: "center",
     fontWeight: "bold",
+    marginLeft: "auto",
+    marginRight: "auto",
+    color: "white",
   },
   actionContainer: {
     width: "100%",
@@ -94,30 +103,34 @@ const styles = StyleSheet.create({
     height: 60,
     width: "100%",
     borderWidth: 1,
+    borderColor: "#ffffff80",
     marginTop: 30,
     marginBottom: 50,
     padding: 10,
     borderRadius: 5,
     margin: "auto",
     fontSize: 16,
+    color: "white",
   },
   button: {
     width: "100%",
     alignItems: "center",
     padding: 20,
-    backgroundColor: "#007ACC",
+    // backgroundColor: "lightsalmon",
+    // backgroundColor: "#F5DEB3",
+    backgroundColor: "#193236",
     borderRadius: 5,
     height: 60,
     marginTop: 5,
     marginBottom: 5,
   },
   resetButton: {
-    backgroundColor: "tomato",
-    height: 60,
-    color: "black",
+    // backgroundColor: "#fff",
+    backgroundColor: "white",
   },
   buttonText: {
     color: "white",
+    // color: "#ff5e00",
     fontSize: 16,
   },
 });

@@ -9,7 +9,6 @@ import {
 import { connect } from "react-redux";
 import { addCard } from "../Redux/actions/addCard/addCard";
 
-
 const AddCard = ({ navigation, dispatch, deck }) => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
@@ -43,7 +42,8 @@ const AddCard = ({ navigation, dispatch, deck }) => {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
+      <Text style={styles.title}>Create a Question</Text>
       <TextInput
         style={styles.input}
         onChangeText={(value) => {
@@ -76,31 +76,42 @@ const mapStateToProps = ({ currentDeckTitle }) => {
 export default connect(mapStateToProps)(AddCard);
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+  },
+  title: {
+    fontSize: 23,
+    width: "70%",
+    textAlign: "center",
+    fontWeight: "bold",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginBottom: 20,
+    marginTop: -100,
+  },
   input: {
     height: 60,
     width: "100%",
     borderWidth: 1,
-    marginTop: 30,
-    marginBottom: 50,
+    borderColor: "grey",
     padding: 10,
     borderRadius: 5,
-    margin: "auto",
     fontSize: 16,
+    marginTop: 5,
+    marginBottom: 5,
   },
   button: {
     width: "100%",
     alignItems: "center",
     padding: 20,
-    backgroundColor: "#007ACC",
+    backgroundColor: "#ff5e00",
     borderRadius: 5,
     height: 60,
-    marginTop: 5,
+    marginTop: 30,
     marginBottom: 5,
-  },
-  resetButton: {
-    backgroundColor: "tomato",
-    height: 60,
-    color: "black",
   },
   buttonText: {
     color: "white",
