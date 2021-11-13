@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
@@ -13,6 +13,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Deck from "./src/components/Deck";
 import AddCard from "./src/components/AddCard";
 import Quiz from "./src/components/Quiz";
+import { setNotification } from "./src/utils/api";
 
 const store = createStore(reducer, middleware);
 const Tab = createBottomTabNavigator();
@@ -64,6 +65,9 @@ export const BottomTabNavigator = () => {
 };
 
 export default function App() {
+useEffect(() => {
+  setNotification();
+}, []);
   return (
     <Provider store={store}>
       <NavigationContainer>

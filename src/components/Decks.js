@@ -4,7 +4,7 @@ import { retrieveDecks } from "../Redux/actions/retrieveDecks/retrieveDecks";
 import { connect } from "react-redux";
 import { setCurrentDeckTitle } from "../Redux/actions/setCurrentDeckTitle/setCurrentDeckTitle";
 import { triggerLocalNotificationHandler } from "../utils/api";
-import { setNotification } from "../utils/api";
+
 
 const DeckCard = ({ navigation, title, size, dispatch }) => {
   const handlePress = () => {
@@ -32,7 +32,7 @@ const Decks = ({ navigation, dispatch, decks }) => {
 
   useEffect(() => {
     if (isMounted.current) {
-      setNotification();
+      
       dispatch(retrieveDecks());
     }
   }, []);

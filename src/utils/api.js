@@ -71,9 +71,13 @@ export const addCardToStorage = async (dispatch, card, deck) => {
 // Show notifications when the app is in the foreground
 Notifications.setNotificationHandler({
   handleNotification: async () => {
-    return {
-      shouldShowAlert: true,
-    };
+    try {
+      return {
+        shouldShowAlert: true,
+      };
+    } catch (error) {
+      return null;
+    }
   },
 });
 
@@ -107,6 +111,7 @@ export const setNotification = async () => {
     let access = await JSON.parse(await AsyncStorage.getItem(NOTIFICATION_KEY));
     if (access === null) {
       let { status } = await Location.requestForegroundPermissionsAsync();
+      alert(status);
       if (status === "granted") {
         Notifications.cancelAllScheduledNotificationsAsync();
 
@@ -115,7 +120,9 @@ export const setNotification = async () => {
         tomorrow.setHours(20);
         tomorrow.setMinutes(0);
 
-        Notifications.scheduleNotificationAsync(createNotification(), {
+        Notifications.scheduleNotificationAsync({
+          content: createNotification(),
+          trigger: { seconds: 1 },
           time: tomorrow,
           repeat: "day",
         });
@@ -130,10 +137,7 @@ export const setNotification = async () => {
 
 export const triggerLocalNotificationHandler = () => {
   Notifications.scheduleNotificationAsync({
-    content: {
-      title: "Local Notification",
-      body: "Zukki is the best!",
-    },
+    content: createNotification(),
     trigger: { seconds: 1 },
   });
 };

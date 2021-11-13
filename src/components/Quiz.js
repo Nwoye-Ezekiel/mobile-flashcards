@@ -42,6 +42,7 @@ const Quiz = ({ navigation, decks, title }) => {
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
   const [percentage, setPercentage] = useState(false);
+  const [flip, setFlip] = useState(false);
   const [numberOfQuestions] = useState(decks[title].questions.length);
   const isMounted = useRef(true);
 
@@ -60,12 +61,23 @@ const Quiz = ({ navigation, decks, title }) => {
   useEffect(() => {
     if (isMounted.current) {
       if (showResult) {
-        clearNotification().then(setNotification);
+        clearNotification().then(() => setNotification());
+
+        // async () => {
+        //   await clearNotification();
+        //   await setNotification();
+        // };
       }
     }
   }, [showResult]);
 
+  let flipcard;
+
   const handleOption = (option) => {
+    if (flip) {
+      flipcard.flip();
+      setFlip(false);
+    }
     if (next + 1 === numberOfQuestions) {
       if (option === decks[title].questions[next].answer) {
         setScore(score + 1);
@@ -90,7 +102,10 @@ const Quiz = ({ navigation, decks, title }) => {
     setPercentage(0);
   };
 
-  let flipcard;
+  const handleFlip = () => {
+    flipcard.flip();
+    setFlip(!flip);
+  };
 
   return (
     <View>
@@ -125,7 +140,7 @@ const Quiz = ({ navigation, decks, title }) => {
                 </TouchableOpacity>
               </CardFlip>
             </View>
-            <Text onPress={() => flipcard.flip()}>Answer</Text>
+            <Text onPress={handleFlip}>Answer</Text>
             <TouchableOpacity
               style={styles.button}
               onPress={() => handleOption("True")}
