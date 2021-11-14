@@ -47,7 +47,7 @@ const Quiz = ({ navigation, decks, title }) => {
   };
 
   const handleQuit = () => {
-    navigation.navigate("Decks");
+    navigation.navigate("Deck");
   };
 
   const handleRestartQuiz = () => {
