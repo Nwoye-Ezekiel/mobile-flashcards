@@ -1,4 +1,4 @@
-export const SET_CURRENT_DECK_TITLE = "SET_CURRENT_DECK_TITLE";
+import {SET_CURRENT_DECK_TITLE} from "./type";
 
 export const setCurrentDeckTitle = (title) => {
   return {

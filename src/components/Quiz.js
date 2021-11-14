@@ -105,7 +105,7 @@ const Quiz = ({ navigation, decks, title }) => {
             </View>
             <View style={styles.showAnswerContainer}>
               <Text style={styles.showAnswerText} onPress={handleFlip}>
-              Show Answer
+                Show Answer
               </Text>
             </View>
             <TouchableOpacity
@@ -176,10 +176,6 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 10,
   },
-  faceText: {
-    color: "white",
-    fontSize: 16,
-  },
   back: {
     borderRadius: 10,
     height: "100%",
@@ -209,9 +205,6 @@ const styles = StyleSheet.create({
   answerContent: {
     color: "black",
     fontSize: 16,
-  },
-  cardText: {
-    color: "black",
   },
   showAnswerContainer: {
     marginBottom: 20,

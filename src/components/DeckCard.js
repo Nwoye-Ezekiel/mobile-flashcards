@@ -7,6 +7,7 @@ const DeckCard = ({ navigation, title, size, dispatch }) => {
     dispatch(setCurrentDeckTitle(title));
     navigation.navigate("Deck");
   };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.button} onPress={handlePress}>
@@ -27,7 +28,6 @@ const styles = StyleSheet.create({
     height: 100,
     width: "100%",
     marginTop: 10,
-    // marginBottom: 5,
   },
   button: {
     flex: 1,

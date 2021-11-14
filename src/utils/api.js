@@ -113,15 +113,12 @@ export const setNotification = async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status === "granted") {
         Notifications.cancelAllScheduledNotificationsAsync();
-
         Notifications.scheduleNotificationAsync({
           content: createNotification(),
           trigger: {
-            seconds: 1,
-            repeats: true,
+            hour: 24,
           },
         });
-
         await AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
       }
     }

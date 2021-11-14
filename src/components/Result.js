@@ -11,7 +11,6 @@ const Result = ({
   return (
     <View style={styles.container}>
       <Text style={styles.resultTitle}>Result Statistics</Text>
-
       {score < numberOfQuestions / 2 ? (
         <Text style={styles.performance}>You Performed Poorly!</Text>
       ) : score === numberOfQuestions ? (
@@ -21,12 +20,10 @@ const Result = ({
       ) : (
         <Text style={styles.performance}>You perfromed well!</Text>
       )}
-
       <Text style={styles.score}>
         You got {score}/{numberOfQuestions} questions correctly, having an
         accuracy of {percentage}%
       </Text>
-
       <TouchableOpacity style={styles.button} onPress={restartQuiz}>
         <Text style={styles.buttonText}>Restart Quiz</Text>
       </TouchableOpacity>
@@ -34,7 +31,9 @@ const Result = ({
         style={[styles.button, { backgroundColor: "black" }]}
         onPress={quit}
       >
-        <Text style={[styles.buttonText, { color: "#ff5e00" }]}>Back to Deck</Text>
+        <Text style={[styles.buttonText, { color: "#ff5e00" }]}>
+          Back to Deck
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -71,16 +70,11 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     padding: 20,
-    backgroundColor: "#007ACC",
+    backgroundColor: "#ff5e00",
     borderRadius: 5,
     height: 60,
     marginTop: 5,
     marginBottom: 5,
-  },
-  resetButton: {
-    backgroundColor: "tomato",
-    height: 60,
-    color: "black",
   },
   buttonText: {
     color: "white",

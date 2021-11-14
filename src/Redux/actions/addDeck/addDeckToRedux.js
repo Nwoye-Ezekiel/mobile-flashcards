@@ -1,8 +1,8 @@
-import {ADD_DECK} from "./type";
+import { ADD_DECK } from "./type";
 
 export const addDeckToRedux = (deck) => {
-    return {
-      type: ADD_DECK,
-      deck,
-    };
+  return {
+    type: ADD_DECK,
+    deck,
   };
+};

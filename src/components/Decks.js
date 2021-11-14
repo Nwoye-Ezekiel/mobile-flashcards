@@ -14,7 +14,7 @@ const Decks = ({ navigation, dispatch, decks }) => {
 
   return Object.keys(decks).length === 0 ? (
     <View style={styles.noDecksContainer}>
-      <Text  style={styles.noDecks}>There are currently no decks created.</Text>
+      <Text style={styles.noDecks}>There are currently no decks created.</Text>
     </View>
   ) : (
     <View style={styles.mainContainer}>

@@ -11,7 +11,6 @@ export const decks = (state = {}, action) => {
         ...action.decks,
       };
     }
-
     case ADD_DECK: {
       return {
         ...state,
@@ -21,19 +20,16 @@ export const decks = (state = {}, action) => {
         },
       };
     }
-
     case ADD_CARD: {
       let decks = state;
       decks[action.deck].questions.push(action.card);
       return { ...decks };
     }
-
     case DELETE_DECK: {
       let decks = state;
       delete decks[action.deck];
       return { ...decks };
     }
-
     default: {
       return state;
     }

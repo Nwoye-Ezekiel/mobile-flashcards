@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 20,
     backgroundColor: "#ff5e00",
-    // backgroundColor: "#ff5e00",
   },
   textHeader: {
     fontSize: 23,
@@ -115,9 +114,6 @@ const styles = StyleSheet.create({
   button: {
     width: "100%",
     alignItems: "center",
-    padding: 20,
-    // backgroundColor: "lightsalmon",
-    // backgroundColor: "#F5DEB3",
     backgroundColor: "#193236",
     borderRadius: 5,
     height: 60,
@@ -125,12 +121,10 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   resetButton: {
-    // backgroundColor: "#fff",
     backgroundColor: "white",
   },
   buttonText: {
     color: "white",
-    // color: "#ff5e00",
     fontSize: 16,
   },
 });
