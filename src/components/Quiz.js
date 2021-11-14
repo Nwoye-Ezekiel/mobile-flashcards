@@ -193,6 +193,7 @@ const styles = StyleSheet.create({
   },
   questionContent: {
     color: "white",
+    textAlign: "center",
     fontSize: 16,
   },
   answerTitle: {

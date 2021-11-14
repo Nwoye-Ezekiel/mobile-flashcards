@@ -36,4 +36,9 @@ When a user has enough cards, he or she can quiz themselves based on the questio
 
 You can also start a quiz, which is only possible when a deck contains at least one card. Finally, you can delete a deck that you no longer wish to use. This procedure can be repeated numerous times. A new user will be requested to allow the app to access his or her location, which will be used to deliver local notifications to that user on a daily basis if the user hasn't completed at least one quiz. I hope you enjoy and find this project resourceful.
 
-[Create React Native App]: https://reactnative.dev/docs/environment-setup
+#### References
+
+- React Native [Documentation]
+
+[create react native app]: https://reactnative.dev/docs/environment-setup
+[Documentation]: https://reactnative.dev/docs/getting-started
